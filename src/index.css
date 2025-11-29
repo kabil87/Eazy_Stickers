@@ -1,0 +1,6 @@
+
+body {
+  @apply font-semibold;
+}
+
+@import "tailwindcss";
