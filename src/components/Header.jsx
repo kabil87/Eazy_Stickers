@@ -4,42 +4,69 @@ import {
   faTags,
   faBars,
   faXmark,
-} from "@fortawesome/free-solid-svg-icons";
+  faMoon,
+  faSun
+} 
+from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [theme, setTheme] = useState("light");
 
   const toggle = () => setIsOpen(!isOpen);
 
+  const darkMode = () => {
+    setTheme((preValue) => {
+
+      const newTheme = preValue === "light" ? "dark" : "light" 
+
+      if(newTheme === "dark"){
+        document.documentElement.classList.add("dark")
+      }
+      else{
+        document.documentElement.classList.remove("dark")
+      }
+
+      return newTheme
+
+    })
+  
+  }
+
   return (
     <>
-      <div className="flex justify-around items-center mt-3 px-6 shadow-2xl">
+      <div className="flex justify-around  items-center pt-3 px-6 pb-4 shadow-2xl ">
       
-        <div className="flex items-center gap-2">
+        <div className="flex  items-center  gap-2">
           <FontAwesomeIcon
             icon={faTags}
-            style={{ color: "#531EA4", fontSize: "35px" }}
+            className= "text-primary dark:text-light dark:hover:text-lighter  hover:cursor-pointer"
+            
           />
-          <h1 className="text-purple-900 text-xl">
+          <h1 className="text-primary dark:text-light dark:hover:text-lighter hover:cursor-pointer ">
             Eazy Stickers
           </h1>
         </div>
 
         
         <div className="flex gap-4 items-center">
+
+          <button className="hover:cursor-pointer " onClick={darkMode}>
+            <FontAwesomeIcon icon={theme === "light" ? faSun : faMoon} />           
+          </button>
         
           <ul className="hidden md:flex gap-5">
-            <li className="text-purple-900  hover:text-purple-700 cursor-pointer">Home</li>
-            <li className="text-purple-900  hover:text-purple-700 cursor-pointer">About</li>
-            <li className="text-purple-900  hover:text-purple-700 cursor-pointer">Contact</li>
-            <li className="text-purple-900  hover:text-purple-700 cursor-pointer">Login</li>
+            <li className="text-primary dark:text-light dark:hover:text-lighter  hover:text-purple-700 cursor-pointer">Home</li>
+            <li className="text-primary dark:text-light dark:hover:text-lighter  hover:text-purple-700 cursor-pointer">About</li>
+            <li className="text-primary dark:text-light dark:hover:text-lighter  hover:text-purple-700 cursor-pointer">Contact</li>
+            <li className="text-primary dark:text-light dark:hover:text-lighter  hover:text-purple-700 cursor-pointer">Login</li>
           </ul>
 
           
           <FontAwesomeIcon
             icon={faShoppingBasket}
-            style={{ color: "#531EA4", fontSize: "20px" }}
+            className="text-primary dark:text-light dark:hover:text-lighter  hover:text-purple-700 cursor-pointer"
           />
 
         
