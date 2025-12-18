@@ -1,12 +1,12 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
-const Footer = () => { 9442417800
+const Footer = () => { 
 
     return (
         <>
 
-        <footer className="mx-auto w-64 mt-10 dark:text-lighter">
+        <footer className="mx-auto  w-64 mt-10 dark:text-lighter">
             Build with 
             <FontAwesomeIcon icon={faHeart} style={{color:"red"}} /> 
             By Eazy Stickers

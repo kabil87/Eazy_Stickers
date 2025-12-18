@@ -8,25 +8,34 @@ import {
   faSun
 } 
 from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState(()=>{
+    return localStorage.getItem("theme") == "dark" ? "dark" : "light" ;
+  });
 
   const toggle = () => setIsOpen(!isOpen);
+
+  useEffect(() => {
+
+     if(theme === "dark"){
+        document.documentElement.classList.add("dark")
+      }
+      else{
+        document.documentElement.classList.remove("dark")
+      }
+
+  },[theme])
 
   const darkMode = () => {
     setTheme((preValue) => {
 
       const newTheme = preValue === "light" ? "dark" : "light" 
 
-      if(newTheme === "dark"){
-        document.documentElement.classList.add("dark")
-      }
-      else{
-        document.documentElement.classList.remove("dark")
-      }
+      localStorage.setItem("theme",newTheme);
 
       return newTheme
 
@@ -34,18 +43,24 @@ const Header = () => {
   
   }
 
+  const navItemClass = "text-primary dark:text-light dark:hover:text-lighter  hover:text-purple-700 cursor-pointer";
+
   return (
     <>
       <div className="flex justify-around  items-center pt-3 px-6 pb-4 shadow-2xl ">
       
         <div className="flex  items-center  gap-2">
-          <FontAwesomeIcon
+          <NavLink to="/home">{
+
+            <FontAwesomeIcon
             icon={faTags}
             className= "text-primary dark:text-light dark:hover:text-lighter  hover:cursor-pointer"
             
-          />
+          />}
+          </NavLink>
+          
           <h1 className="text-primary dark:text-light dark:hover:text-lighter hover:cursor-pointer ">
-            Eazy Stickers
+            <NavLink to="/home">Eazy Stickers</NavLink>
           </h1>
         </div>
 
@@ -57,17 +72,18 @@ const Header = () => {
           </button>
         
           <ul className="hidden md:flex gap-5">
-            <li className="text-primary dark:text-light dark:hover:text-lighter  hover:text-purple-700 cursor-pointer">Home</li>
-            <li className="text-primary dark:text-light dark:hover:text-lighter  hover:text-purple-700 cursor-pointer">About</li>
-            <li className="text-primary dark:text-light dark:hover:text-lighter  hover:text-purple-700 cursor-pointer">Contact</li>
-            <li className="text-primary dark:text-light dark:hover:text-lighter  hover:text-purple-700 cursor-pointer">Login</li>
+            <NavLink to="/home" className={ navItemClass }>Home</NavLink>
+            <NavLink to="/about" className={({isActive}) => isActive ? `underline ${navItemClass}` : navItemClass }>About</NavLink>
+            <NavLink to="/contact" className={({isActive}) => isActive ? `underline ${navItemClass}` : navItemClass }>Contact</NavLink>
+            <NavLink to="/login" className={({isActive}) => isActive ? `underline ${navItemClass}` : navItemClass }>Login</NavLink>
           </ul>
 
           
-          <FontAwesomeIcon
-            icon={faShoppingBasket}
-            className="text-primary dark:text-light dark:hover:text-lighter  hover:text-purple-700 cursor-pointer"
-          />
+          <NavLink to="/cart" className={navItemClass}>
+          
+            <FontAwesomeIcon icon={faShoppingBasket}/>
+          
+          </NavLink>
 
         
           <div className="block md:hidden pl-2">
