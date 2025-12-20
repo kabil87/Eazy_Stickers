@@ -6,7 +6,7 @@ const Footer = () => {
     return (
         <>
 
-        <footer className="mx-auto  w-64 mt-10 dark:text-lighter">
+        <footer className=" max-w-3xl mx-auto text-center   mt-10 dark:text-lighter">
             Build with 
             <FontAwesomeIcon icon={faHeart} style={{color:"red"}} /> 
             By Eazy Stickers

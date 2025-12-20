@@ -16,7 +16,7 @@ const ErrorPage = () => {
         <Header />
 
         <div className="ml-110 mt-6">
-           <div className="ml-40">
+           <div className="ml-48">
              <PageTitle  title={errorMsg.status} />
            </div>
 
@@ -28,14 +28,14 @@ const ErrorPage = () => {
 
         </div>
 
-        <Link to="/home">{<button className="absolute ml-240 mt-70 bg-purple-500 px-2 rounded-sm">Home</button>}</Link>
-         
-            
-         
-
         <Footer />
+
+       <div className="absolute">
+         <Link to="/home">{<button className="hover:cursor-pointer hover:bg-purple-400 ml-240 mt-75  bg-purple-500 px-2 rounded-sm">Home</button>}</Link> 
+       </div>
      
     </div>
+    
 
   )
 }
